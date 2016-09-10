@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding: utf-8
 from django import forms
 from django.http import HttpResponseRedirect
@@ -6,18 +5,21 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
-from models import Todo
+from .models import Todo
+
 
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
         fields = ('title',)
 
+
 def index(request):
     ctx = {}
     ctx['todos'] = Todo.objects.all().order_by('finished', '-id')
     ctx['form'] = TodoForm()
     return render(request, 'index.html', ctx)
+
 
 def new(request):
     form = TodoForm()
@@ -41,11 +43,13 @@ def edit(request, id):
             return HttpResponseRedirect(reverse("todo_idx"))
     return render(request, 'todo/form.html', {'form': form})
 
+
 def delete(request, id):
     todo = get_object_or_404(Todo, id=id)
     todo.delete()
     messages.info(request, u'成功删除')
     return HttpResponseRedirect(reverse("todo_idx"))
+
 
 def finish(request, id):
     todo = get_object_or_404(Todo, id=id)

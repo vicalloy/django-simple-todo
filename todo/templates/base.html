@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Simple Todo</title>
+    <link href="{% static 'styles/reset.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'styles/index/style.css' %}" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="header box">
+        <h1><a href="/">Simple Todo</a></h1>
+      </div>
+
+      <div class="main box">
+
+        {% block content %} {% endblock %}
+
+        <div class="foot">
+          Copyright&copy; Simple Todo
+          作者 <a href="http://vik.haoluobo.com/blog/">vicalloy</a>
+          &nbsp;
+          <br/>
+          <a href="http://djangoproject.com/">Django</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
